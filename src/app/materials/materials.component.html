@@ -1,0 +1,24 @@
+<h1>
+    MATERIALS</h1>
+
+<table>
+    <th>Id</th>
+    <th>name</th>
+    <th>Quality</th>
+    <th>Weight</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <tr *ngFor="let material of materials">
+        <td>{{material.id}}</td>
+        <td>{{material.name}}</td>
+        <td>{{material.quality}}</td>
+        <td>{{material.weight}}</td>
+        <td>{{material.price}}</td>
+        <td (click)="deleteItem(material.id)"><a>DELETE</a></td>
+        <td [routerLink]="['/menubar', material.id]"><a>UPDATE</a></td>
+
+    </tr>
+
+
+</table>

@@ -1,0 +1,53 @@
+<h1>
+    CUSTOMERS</h1>
+<button (click)="AddCust()">+New Customer</button>
+<mat-checkbox #showDiv>Add new customers</mat-checkbox>
+
+<table *ngIf="status">
+    <th>Id</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Location</th>
+    <th>Orders</th>
+    <th>Balance</th>
+    <th></th>
+    <th></th>
+    <tr *ngFor="let customer of products">
+        <td>{{customer.id}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.phone}}</td>
+        <td>{{customer.location}}</td>
+        <td>{{customer.ordernum}}</td>
+        <td>{{customer.balance}}</td>
+
+        <td (click)="deleteCustomer(customer.id)"><a>DELETE</a></td>
+        <td (click)="UpdateCustomer(customer.id)"><a>UPDATE</a></td>
+
+    </tr>
+</table>
+<div *ngIf="!status">
+    <button (click)="AddCust2()"><<Back</button>
+    <h2 *ngIf="!status">New Customer</h2>
+    <form id="formUpdateProduct" name="formUpdateProduct" #productData="ngForm" (ngSubmit)="addNewProduct(productData.value)">
+
+        <label>Name:</label><input type="text" name="name" id="name" placeholder="name" ngModel><br>
+        <label>Phone:</label><input type="number" name="phone" id="phone" placeholder="phone" ngModel><br>
+        <label>Location:</label><input type="text" name="location" id="location" placeholder="location" ngModel><br>
+        <label>Order_num:</label><input type="number" name="ordernum" id="ordernum" placeholder="order_num" ngModel><br>
+        <label>Balance:</label><input type="number" name="balance" id="balance" placeholder="Balance" ngModel><br>
+
+        <input type="submit" value="Add Customer">
+    </form>
+</div>
+<h2 *ngIf="!status">Update Customers</h2>
+<form *ngIf="showDiv.checked" id="formUpdateProduct" name="formUpdateProduct" #productData="ngForm" (ngSubmit)="UpdateCustomer(productData.value)">
+
+    <label>Name:</label><input type="text" name="name" id="name" placeholder="name" [(ngModel)]="data.name" ngModel><br>
+    <label>Phone:</label><input type="number" name="phone" id="phone" placeholder="phone" [(ngModel)]="data.phone" ngModel><br>
+    <label>Location:</label><input type="text" name="location" id="location" placeholder="location" [(ngModel)]="data.location" ngModel><br>
+    <label>Order_num:</label><input type="number" name="ordernum" id="ordernum" placeholder="order_num" [(ngModel)]="data.ordernum" ngModel><br>
+    <label>Balance:</label><input type="number" name="balance" id="balance" placeholder="Balance" [(ngModel)]="data.balance" ngModel><br>
+
+    <input type="submit" value="Update Customer">
+
+</form>

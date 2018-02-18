@@ -1,0 +1,34 @@
+<div>
+    <button (click)="AddMat()">+ New Materials</button>
+</div>
+
+
+
+<p *ngIf="!exists"> product does not exist</p>
+<h2 *ngIf="!status">Update MATERIALS</h2>
+<form *ngIf="!status" id="formUpdateProduct" name="formUpdateProduct" #productData="ngForm" (ngSubmit)="UpdateProduct(productData.value)">
+
+    <label>Name:</label><input type="text" name="name" id="name" placeholder="name" [(ngModel)]="data.name" ngModel><br>
+    <label>Quality:</label><input type="text" name="quality" id="quality" placeholder="quality" [(ngModel)]="data.quality" ngModel><br>
+    <label>Weight:</label><input type="text" name="weight" id="weight" placeholder="weight" [(ngModel)]="data.weight" ngModel><br>
+    <label>Price:</label><input type="text" name="price" id="price" placeholder="price" [(ngModel)]="data.price" ngModel><br>
+
+    <input type="submit" value="Update Materials">
+
+</form>
+
+<div *ngIf="status">
+    <h2>Add New Products</h2>
+    <form *ngIf="status" id="formNewProduct" name="formNewProduct" #productData2="ngForm" (ngSubmit)="addNewProduct(productData2.value)">
+
+        <label>Name:</label><input type="text" name="name" id="name" placeholder="name" ngModel><br>
+        <label>Quality:</label><input type="text" name="quality" id="quality" placeholder="quality" ngModel><br>
+        <label>Weight:</label><input type="text" name="weight" id="weight" placeholder="weight" ngModel><br>
+        <label>Price:</label><input type="text" name="price" id="price" placeholder="price" ngModel><br>
+        <input type="submit" value="Add Product">
+
+
+    </form>
+    <br>
+    <h3 *ngIf="isAdded">{{confirmationMsg}}</h3>
+</div>

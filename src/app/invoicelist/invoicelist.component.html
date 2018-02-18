@@ -1,0 +1,80 @@
+<h6 class="text-center">Invoice Register</h6><br/>
+<table class="table table-sm table-hover">
+    <tr *ngFor="let invoice of invoiceList">
+        <td>{{invoice.name}}</td>
+        <td>{{invoice.total}}</td>
+        <td>
+            <a class="btn" (click)="onEdit(invoice)">
+                <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="btn" (click)="onDelete(invoice.$key)">
+                <i class="fa fa-trash-o"></i>
+            </a>
+        </td>
+    </tr>
+</table>
+<div>
+    <mat-card>
+        <mat-table #table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                <mat-cell *matCellDef="let invoice"> {{invoice.name}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="quantity">
+                <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                <mat-cell *matCellDef="let invoice"> {{invoice.quantity}} </mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="total">
+                <mat-header-cell *matHeaderCellDef>Total </mat-header-cell>
+                <mat-cell *matCellDef="let invoice"> {{invoice.total}} </mat-cell>
+
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef>Adjust </mat-header-cell>
+                <mat-cell *matCellDef="let invoice">
+                    <a class="btn" (click)="onEdit(invoice)">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                </mat-cell>
+
+            </ng-container>
+
+
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="prodnum">
+                <mat-header-cell *matHeaderCellDef> Product num </mat-header-cell>
+                <mat-cell *matCellDef="let invoice"> {{invoice.prodnum}} </mat-cell>
+            </ng-container>
+
+
+            <!-- Symbol Column 
+      <ng-container matColumnDef="balance">
+          <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.balance}} </mat-cell>
+      </ng-container>
+-->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+        </mat-paginator>
+
+        <div *ngIf="pageEvent">
+            <h5>Page Change Event Properties</h5>
+            <div>List length: {{pageEvent.length}}</div>
+            <div>Page size: {{pageEvent.pageSize}}</div>
+            <div>Page index: {{pageEvent.pageIndex}}</div>
+        </div>
+    </mat-card>
+</div>

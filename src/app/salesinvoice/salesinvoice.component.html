@@ -1,0 +1,48 @@
+<div class="text-center">
+    <h2 class="jumbotron">Employee Register</h2>
+</div>
+
+<div class="row">
+
+    <div class="col-md-5">
+        <app-invoicelist></app-invoicelist>
+    </div>
+
+    <div class="col-md-7">
+
+        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="invoiceService.selectedInvoice.$key">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="name" #name="ngModel" [(ngModel)]="invoiceService.selectedInvoice.name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label>prodnum</label>
+                <input class="form-control" name="prodnum" #prodnum="ngModel" [(ngModel)]="invoiceService.selectedInvoice.prodnum" placeholder="prodnum">
+            </div>
+            <div class="form-group">
+                <label>quantity</label>
+                <input class="form-control" name="quantity" #quantity="ngModel" [(ngModel)]="invoiceService.selectedInvoice.quantity" placeholder="quantity">
+            </div>
+
+            <div class="form-group">
+                <label>Total</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                    <input class="form-control" name="total" #total="ngModel" [(ngModel)]="invoiceService.selectedInvoice.total" placeholder="Total">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">
+      <i class="fa fa-floppy-o"></i>
+       Submit</button>
+                <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+      <i class="fa fa-repeat"></i>
+       Reset</button>
+            </div>
+        </form>
+    </div>

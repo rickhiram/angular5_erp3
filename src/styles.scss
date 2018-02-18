@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+table,
+th,
+td {
+    border: 1px solid black;
+    font-size: 30px;
+    padding: 10px;
+}
+
+form,
+label,
+input {
+    font-size: 30px;
+    padding: 10px;
+}
+
+input {
+    margin-top: 10px;
+}
+
+a {
+    color: red;
+    font-size: 30px;
+}
+
+a:hover {
+    cursor: pointer;
+    color: blueviolet;
+}
+
+input.ng-invalid.ng-dirty {
+    border: 1px solid red;
+}
+
+button:hover,
+a.btn:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,144 @@
+<div class="row">
+
+    <div class="col-md-5">
+        <div>
+            <mat-card>
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.name}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="quantity">
+                        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.quantity}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="total">
+                        <mat-header-cell *matHeaderCellDef>Total </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.total}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                        <mat-header-cell *matHeaderCellDef>Adjust </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice">
+                            <a class="btn" (click)="onEdit(invoice)">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                        </mat-cell>
+
+                    </ng-container>
+
+
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="prodnum">
+                        <mat-header-cell *matHeaderCellDef> Product num </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.prodnum}} </mat-cell>
+                    </ng-container>
+
+
+                    <!-- Symbol Column 
+              <ng-container matColumnDef="balance">
+                  <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+                  <mat-cell *matCellDef="let user"> {{user.balance}} </mat-cell>
+              </ng-container>
+        -->
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                </mat-table>
+
+
+                <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+                </mat-paginator>
+
+                <div *ngIf="pageEvent">
+                    <h5>Page Change Event Properties</h5>
+                    <div>List length: {{pageEvent.length}}</div>
+                    <div>Page size: {{pageEvent.pageSize}}</div>
+                    <div>Page index: {{pageEvent.pageIndex}}</div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+
+        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="formular.selectedFormular.$key">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="product" #product="ngModel" [(ngModel)]="formular.selectedFormular.product" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label>ProductNum</label>
+                <input class="form-control" name="prodnum" #prodnum="ngModel" [(ngModel)]="formular.selectedFormular.prodnum" placeholder="prodnum">
+            </div>
+            <div class="form-group">
+                <label>MaizeGerm</label>
+                <input class="form-control" name="maizeGerm" #maizeGerm="ngModel" [(ngModel)]="formular.selectedFormular.maizeGerm" placeholder="quantity">
+            </div>
+            <div class="form-group">
+                <label>WheatPollard</label>
+                <input class="form-control" name="WheatPollard" #WheatPollard="ngModel" [(ngModel)]="formular.selectedFormular.WheatPollard" placeholder="wheatPollard">
+            </div>
+            <div class="form-group">
+                <label>WheatBran</label>
+                <input class="form-control" name="wheatBran" #wheatBran="ngModel" [(ngModel)]="formular.selectedFormular.wheatBran" placeholder="wheatBran">
+            </div>
+            <div class="form-group">
+                <label>RicePolish</label>
+                <input class="form-control" name="ricePolish" #ricePolish="ngModel" [(ngModel)]="formular.selectedFormular.ricePolish" placeholder="ricePolish">
+            </div>
+            <div class="form-group">
+                <label>FishMeal</label>
+                <input class="form-control" name="fishMeal" #fishMeal="ngModel" [(ngModel)]="formular.selectedFormular.fishMeal" placeholder="fishMeal">
+            </div>
+            <div class="form-group">
+                <label>SunFlower</label>
+                <input class="form-control" name="sunflowerMeal" #sunflowerMeal="ngModel" [(ngModel)]="formular.selectedFormular.sunflowerMeal" placeholder="sunflowerMeal">
+            </div>
+            <div class="form-group">
+                <label>Omena</label>
+                <input class="form-control" name="omena" #omena="ngModel" [(ngModel)]="formular.selectedFormular.omena" placeholder="omena">
+            </div>
+            <div class="form-group">
+                <label>Ochong'a</label>
+                <input class="form-control" name="ochonga" #ochonga="ngModel" [(ngModel)]="formular.selectedFormular.ochonga" placeholder="ochonga">
+            </div>
+            <div class="form-group">
+                <label>maizeMeal</label>
+                <input class="form-control" name="maizeMeal" #maizeMeal="ngModel" [(ngModel)]="formular.selectedFormular.maizeMeal" placeholder="maizeMeal">
+            </div>
+            <div class="form-group">
+                <label>chenga/Jenga</label>
+                <input class="form-control" name="chenga" #chenga="ngModel" [(ngModel)]="formular.selectedFormular.chenga" placeholder="chenga">
+            </div>
+
+            <div class="form-group">
+                <label>Total</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                    <input class="form-control" name="total" #total="ngModel" [(ngModel)]="formular.selectedFormular.total" placeholder="cost">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">
+      <i class="fa fa-floppy-o"></i>
+       Submit</button>
+                <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+      <i class="fa fa-repeat"></i>
+       Reset</button>
+            </div>
+        </form>
+    </div>

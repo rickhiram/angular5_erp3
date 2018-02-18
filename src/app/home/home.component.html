@@ -1,0 +1,52 @@
+<a routerLink='/products'>+ Add Product</a>
+<h1>
+    Products</h1>
+<!--
+<mat-table *ngFor="let product of products">
+    
+    <th>Id</th>
+    <th>name</th>
+    <th>Weight</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    
+
+    <tr *ngFor="let product of products">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.weight}}</td>
+        <td>{{product.price}}</td>
+        <td (click)="deleteItem(product.id)"><a>DELETE</a></td>
+        <td [routerLink]="['/update', product.id]"><a>UPDATE</a></td>
+
+    </tr>
+-->
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{products.price}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{products.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{products.weight}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

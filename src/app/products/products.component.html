@@ -1,0 +1,41 @@
+<a routerLink="/">
+    back  </a>
+
+<h2>Add New Products</h2>
+<form class="example-form" id="formNewProduct" name="formNewProduct" #productData="ngForm" (ngSubmit)="addNewProduct(productData.value)">
+    <!--
+    <input  type="text" mat-label="name" placeholder="input" ngModel><br>
+
+   <input type="number" mat-label="price" placeholder="input" ngModel><br>
+-->
+
+    <div container>
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" mat-label="name" name="name" placeholder="name" ngModel><br>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" mat-label="price" name="name" placeholder="price" ngModel><br>
+        </mat-form-field>
+
+    </div>
+
+
+    <mat-form-field required=true>Weight
+        <mat-select [(value)]="selected12">
+
+            <mat-option value="10">10kg</mat-option>
+            <mat-option value="20">20kg</mat-option>
+            <mat-option value="70">70kg</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <div><input type="submit" value="Add Product"></div>
+
+
+
+
+</form>
+<br>
+<h3 *ngIf="isAdded">{{confirmationMsg}}</h3>
