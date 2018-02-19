@@ -19,7 +19,7 @@ import {PageEvent} from '@angular/material';
 export class SalesordersComponent implements OnInit {
   checked = true;
   //dataSource = new SalesDataSource(this.workorder);
-
+  date =Date();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -30,7 +30,7 @@ export class SalesordersComponent implements OnInit {
     constructor(private salesService:SalesService, private http: Http,private workorder: WorkorderService) { }
    
    
-   prdctSelect:  [
+   prdctSelect = [
      {name:'kienyeji',weight:78, price:1290,prodnum:1001},
      {name:'layers',weight:78, price:1290,prodnum:1002},
      {name:'chick mash',weight:78, price:1290,prodnum:1003},
@@ -51,14 +51,16 @@ export class SalesordersComponent implements OnInit {
 weight:any;
 products:any;
 quantity:any;
-date:any;
-picker:any;
+
+picker:string;
 productObj2;
    product:number;
    prodname;
    status;
     selected12: any;
-    productObj: Object = {}; 
+    productObj: Object = {};
+    
+    
     addNewProduct = function(product){
     this.productObj = {
       'name': product.name,
@@ -67,10 +69,13 @@ productObj2;
       'price': product.price,
      // '$key': product.$key,
       'quantity':product.quantity,
-      'date':this.picker,
+      'date':this.date,
       'prodnum':this.product,
       //'status':this.status
     }
+
+
+    
     /*
     this.http.post('http://localhost:5800/salesorders', this.productObj).subscribe((res:Response)=>{
     this.isAdded = true;  
@@ -78,6 +83,8 @@ productObj2;
     })
     
 */
+
+this.date = product.date;
 console.log(product.date);
 this.workorder.insertSalesorder(this.productObj); 
 
@@ -96,12 +103,12 @@ this.workorder.insertSalesorder(this.productObj);
       "date":row.date,
       "id":row.id
 
-     
+    // add row to workorder then delete 
     }
     this.workorder.insertWorkorder(this.productObj2);
 
-    console.log(row);
-    this.salesService.delInvoice(row);
+    console.log(row.date);
+    this.workorder.delInvoice(row.$key);
   }
   ngOnInit() {
    

@@ -47,11 +47,11 @@ isAdded = false;
     insertWorkorder(wrk:Workorder){
 
       this.WorkorderList.push({
-        //date: wrk.date,
+        date: wrk.date,
         
-       // product:  wrk.product,
+        product:  wrk.product,
         weight:  wrk.weight,
-        //quantity:  wrk.quantity,
+        quantity:  wrk.quantity,
   
         
   
@@ -88,7 +88,7 @@ isAdded = false;
           prodnum:sales.prodnum,
           name:sales.name,
           price:sales.price,
-          quantity:  sales.quantity,
+          quantity:sales.quantity,
           
 
 
@@ -122,6 +122,10 @@ isAdded = false;
        
         deleteEmployee($key : string){
           this.ProductList.remove($key);
+        }
+       
+        delInvoice($key : string){
+          this.salesorderList.remove($key);
         }
        
       }
