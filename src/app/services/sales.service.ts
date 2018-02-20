@@ -5,6 +5,7 @@ import {Sales} from '../models/sales.model';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Invoice } from 'app/models/invoice.model';
 import {Http,Response,Headers} from '@angular/http';
+import{WorkorderService} from './workorder.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class SalesService {
  invoice2: Observable<any[]>;
 formularList: AngularFireList<any>;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private workorder:WorkorderService) { }
 
   // headers = new Headers({'content-type':'application/json'})
 

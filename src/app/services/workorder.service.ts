@@ -11,9 +11,12 @@ export class WorkorderService {
   workorder2: Observable<any[]>;
   salesorder2: Observable<any[]>;
   Products2: Observable<any[]>;
+  invoice2: Observable<any[]>;
+
   WorkorderList: AngularFireList<any>;
   ProductList: AngularFireList<any>;
   salesorderList: AngularFireList<any>;
+  InvoiceList: AngularFireList<any>;
   selectedWorkorder: Workorder = new Workorder();
   selectedProduct: Products = new Products();
  // selectedInvoice: Workorder = new Workorder();
@@ -21,7 +24,8 @@ export class WorkorderService {
   constructor(private firebase :AngularFireDatabase) {this.WorkorderList = firebase.list('Workorder')
   this.workorder2 = this.WorkorderList.valueChanges(); this.salesorderList = firebase.list('sales')
   this.salesorder2 = this.salesorderList.valueChanges();this.ProductList = firebase.list('products')
-  this.Products2 = this.ProductList.valueChanges();}
+  this.Products2 = this.ProductList.valueChanges();this.InvoiceList = firebase.list('invoices')
+  this.invoice2 = this.InvoiceList.valueChanges();}
   
 
 isAdded = false;
@@ -43,6 +47,12 @@ isAdded = false;
     return this.ProductList;
   }
 
+  getinvoice(){
+    this.InvoiceList = this.firebase.list('invoices');
+
+    return this.InvoiceList;
+  }
+
   
     insertWorkorder(wrk:Workorder){
 
@@ -56,8 +66,20 @@ isAdded = false;
         
   
       });
+    }
+      insertinvoice(wrk){
+
+        this.WorkorderList.push({
+          date: wrk.date,
+          
+          product:  wrk.product,
+          weight:  wrk.weight,
+          quantity:  wrk.quantity,
+          total: wrk.total,
     
+          
     
+        });
       }
 
 
