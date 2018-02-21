@@ -90,7 +90,9 @@ this.workorder.insertSalesorder(this.productObj);
 
   }    
 
-      
+    // select a row from the table in component.html onclick.
+    
+    
     selectRow(row){
       //this.weight = row.weight*100;
       console.log(this.product);

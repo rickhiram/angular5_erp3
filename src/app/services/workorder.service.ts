@@ -111,6 +111,23 @@ isAdded = false;
       
         }
 
+        insertcustomers(cust:Customers){
+       
+
+          this.CustomersList.push({
+           
+           
+            name: cust.name,
+            location: cust.location,
+            phone:cust.phone,
+           balance: cust.balance,
+    
+  
+          });
+        
+        
+          }
+
       insertSalesorder(sales:Sales){
 
         this.salesorderList.push({
@@ -153,14 +170,15 @@ isAdded = false;
             });
         }
        
-        updatecustomers(product : Customers){
-          this.ProductList.update(product.$key,
+        updatecustomers(customers : Customers){
+          this.ProductList.update(customers.$key,
             {
-              name: product.name,
+              name: customers.name,
              // $key:product.$key, this isnt important
-              prodnum: product.prodnum,
-              weight: product.prodnum,
-              price: product.balance,
+              location:customers.location,
+              custid: customers.custid,
+              balance: customers.balance,
+              phone: customers.phone,
               
             });
         }

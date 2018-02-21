@@ -15,7 +15,7 @@ import { Invoice } from '../models/invoice.model';
 })
 export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource<Invoice[]>();
-displayedColumns= ['name','phone','location','balance','custid']
+displayedColumns= ['name','custid','phone','location','balance']
 
 @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -42,9 +42,66 @@ ngAfterViewInit() {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
 
+    productObj:any;
+    UpdateProduct(data){
+      this.productObj = {
+        "product":data.product,
+        "weight":data.weight,
+        "quantity":data.quantity,
+        "date":data.date
+      }
+    //post method
+    this.workorderService.insertWorkorder(this.productObj);
+    
+    };
+
+    // input data from form to customerslist firebase
+
+
+    addNewProduct = function(customer){
+      this.productObj = {
+        'name': customer.name,
+        'phone':customer.phone,
+        'location':customer.location,
+        'balance':customer.balance,
+
+        
+        //'status':this.status
+      }
+  
+  
+      
+  
+  
+ 
+  this.workorderService.insertcustomers(this.productObj); 
+  
+    }    
+    productObj2;
+    selectRow(row){
+      //this.weight = row.weight*100;
+      
+
+
+      this.productObj2 = {
+        "name":row.name,
+      "phone":row.phone,
+      "balance":row.balance,
+      "location":row.location,
+      "id":row.custid
+
+    // row data from customers table. use custid to make order******** 
+    }
+    //this.workorderService.insertWorkorder(this.productObj2);
+
+    console.log(row.phone)
+  }
+
+
+
   ngOnInit() {
 
-    var x = this.workorderService.getinvoice();
+    var x = this.workorderService.getcustomers();
     x.snapshotChanges().subscribe(item => {
       this.dataSource.data = [];
       item.forEach(element => {
