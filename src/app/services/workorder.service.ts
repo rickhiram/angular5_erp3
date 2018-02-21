@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Workorder} from '../models/workorder.model';
+import {Customers} from '../models/customers.model';
 import {Sales} from '../models/sales.model';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 import { Products } from 'app/models/products.model';
@@ -12,11 +13,15 @@ export class WorkorderService {
   salesorder2: Observable<any[]>;
   Products2: Observable<any[]>;
   invoice2: Observable<any[]>;
+  customers2: Observable<any[]>;
 
   WorkorderList: AngularFireList<any>;
   ProductList: AngularFireList<any>;
   salesorderList: AngularFireList<any>;
   InvoiceList: AngularFireList<any>;
+  CustomersList: AngularFireList<any>;
+
+
   selectedWorkorder: Workorder = new Workorder();
   selectedProduct: Products = new Products();
  // selectedInvoice: Workorder = new Workorder();
@@ -25,7 +30,8 @@ export class WorkorderService {
   this.workorder2 = this.WorkorderList.valueChanges(); this.salesorderList = firebase.list('sales')
   this.salesorder2 = this.salesorderList.valueChanges();this.ProductList = firebase.list('products')
   this.Products2 = this.ProductList.valueChanges();this.InvoiceList = firebase.list('invoices')
-  this.invoice2 = this.InvoiceList.valueChanges();}
+  this.invoice2 = this.InvoiceList.valueChanges(); this.CustomersList = firebase.list('customers')
+  this.customers2 = this.CustomersList.valueChanges();}
   
 
 isAdded = false;
@@ -40,7 +46,12 @@ isAdded = false;
 
     return this.salesorderList;
   }
+  getcustomers(){
+    this.CustomersList = this.firebase.list('customers');
 
+    return this.CustomersList;
+  }
+ 
   getProducts(){
     this.ProductList = this.firebase.list('products');
 
@@ -69,7 +80,7 @@ isAdded = false;
     }
       insertinvoice(wrk){
 
-        this.WorkorderList.push({
+        this.InvoiceList.push({
           date: wrk.date,
           
           product:  wrk.product,
@@ -134,7 +145,7 @@ isAdded = false;
           this.ProductList.update(product.$key,
             {
               name: product.name,
-              $key:product.$key,
+             // $key:product.$key, this isnt important
               prodnum: product.prodnum,
               weight: product.weight,
               price: product.price,
@@ -142,6 +153,19 @@ isAdded = false;
             });
         }
        
+        updatecustomers(product : Customers){
+          this.ProductList.update(product.$key,
+            {
+              name: product.name,
+             // $key:product.$key, this isnt important
+              prodnum: product.prodnum,
+              weight: product.prodnum,
+              price: product.balance,
+              
+            });
+        }
+
+
         deleteEmployee($key : string){
           this.ProductList.remove($key);
         }
