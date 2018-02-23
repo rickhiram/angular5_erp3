@@ -7,7 +7,7 @@ export class Sales{
     product: string;
    weight: number;
     price: number;
-     $key: string;
+     custid: string;
      date:Date;
      prodnum:number;
      quantity:number;

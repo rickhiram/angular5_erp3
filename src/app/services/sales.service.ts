@@ -28,12 +28,5 @@ formularList: AngularFireList<any>;
   getInvoice(): Observable<Invoice[]>{
     return this.http.get<Invoice[]>(this.invoiceUrl)
   }
-  delInvoice(sales :Sales ){
-  const url =`${"http://localhost:5800/salesorders"}/${sales.$key}`
-  return this.http.delete(url).toPromise()
-  .then(()=>{
-   // this.fetchData();
-  
-  })
-  }
+ 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import {WorkorderService} from '../services/workorder.service';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
+import { Router } from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
@@ -30,7 +31,7 @@ ngAfterViewInit() {
 }
 
 
-  constructor(private workorderService:WorkorderService, private http: Http) { }
+  constructor(private workorderService:WorkorderService, private http: Http, private router:Router) { }
 
   length = 100;
   pageSize = 10;
@@ -64,6 +65,7 @@ ngAfterViewInit() {
         'phone':customer.phone,
         'location':customer.location,
         'balance':customer.balance,
+        'custid':customer.custid
 
         
         //'status':this.status
@@ -95,6 +97,7 @@ ngAfterViewInit() {
     //this.workorderService.insertWorkorder(this.productObj2);
 
     console.log(row.phone)
+    this.router.navigateByUrl('/orders');
   }
 
 

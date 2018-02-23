@@ -47,6 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { WorkorderService } from 'app/services/workorder.service';
 import {FormulationComponent}from './formulation/formulation.component';
 import {FormulationService} from './services/formulation.service';
+import { DatePipe } from '@angular/common'
+import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import {FormulationService} from './services/formulation.service';
     SalesinvoiceComponent,
     WorkorderComponent,
     InvoicelistComponent,
-    FormulationComponent
+    FormulationComponent,
+    AllInvoicesComponent
    
   
 
@@ -99,7 +102,7 @@ import {FormulationService} from './services/formulation.service';
 
   ],
   providers: [UserService,ProductsService,SalesService, 
-    InvoiceServiceService, WorkorderService, FormulationService],
+    InvoiceServiceService, WorkorderService, FormulationService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

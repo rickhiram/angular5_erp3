@@ -18,12 +18,14 @@ import {PageEvent} from '@angular/material';
 })
 export class WorkorderComponent implements OnInit {
   //dataSource = new workorderDataSource(this.workorderService);
-  displayedColumns= ['date','product','weight','quantity'];
+  displayedColumns= ['date','product','weight','quantity','total','key'];
   dataSource = new MatTableDataSource<Workorder[]>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
   constructor(private userService:UserService, private workorderService : WorkorderService) { }
+  
+  total = 0;
   
   productObj:any;
   UpdateProduct(data){
@@ -31,12 +33,36 @@ export class WorkorderComponent implements OnInit {
       "product":data.product,
       "weight":data.weight,
       "quantity":data.quantity,
-      "date":data.date
+      "date":data.date,
+      "total":this.total
     }
   //post method
   this.workorderService.insertWorkorder(this.productObj);
   
   };
+productObj2;
+  selectRow(row){
+    //this.weight = row.weight*100;
+    
+
+
+    this.productObj2 = {
+      "product":row.product,
+      "date":row.date,
+    "weight":row.weight,
+    "quantity":row.quantity,
+     "total":this.total,
+    "$key":row.$key
+
+
+  // add row to workorder then delete 
+  }
+  this.workorderService. updateworkorder(this.productObj2);
+ // this.workorderService.insertAllInvoice(this.productObj2);
+this.total = row.weight * row.quantity
+  console.log(row.$key);
+ // this.workorderService.delInvoice(row.$key);
+}
 
   ngOnInit() {
 

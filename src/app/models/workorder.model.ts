@@ -3,4 +3,6 @@ export class Workorder{
     weight: number;
     quantity: number;
     date: string;
+    total:number;
+    $key:string;
 }

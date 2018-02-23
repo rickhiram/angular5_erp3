@@ -47,8 +47,22 @@ export class InvoicelistComponent implements OnInit {
     setPageSizeOptions(setPageSizeOptionsInput: string) {
       this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
     }
+//select a customer by name from table row,
 
- 
+productObj2;
+    selectRow(row){
+     
+        this.productObj2 = {
+        "product":row.product,
+      "weight":row.weight,
+      "quantity":row.quantity,
+      "date":row.date,
+      "name":row.name,
+      "price":row.price
+
+    // add row to workorder then delete 
+    }
+  }
   ngOnInit() {
    
 

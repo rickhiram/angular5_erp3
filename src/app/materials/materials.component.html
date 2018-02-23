@@ -1,24 +1,114 @@
-<h1>
-    MATERIALS</h1>
+<div class="row">
 
-<table>
-    <th>Id</th>
-    <th>name</th>
-    <th>Quality</th>
-    <th>Weight</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <tr *ngFor="let material of materials">
-        <td>{{material.id}}</td>
-        <td>{{material.name}}</td>
-        <td>{{material.quality}}</td>
-        <td>{{material.weight}}</td>
-        <td>{{material.price}}</td>
-        <td (click)="deleteItem(material.id)"><a>DELETE</a></td>
-        <td [routerLink]="['/menubar', material.id]"><a>UPDATE</a></td>
+    <div class="col-md-7">
+        <div>
+            <mat-card>
+                <mat-table #table [dataSource]="dataSource">
 
-    </tr>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.name}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="prodnum">
+                        <mat-header-cell *matHeaderCellDef> Prodnum </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.prodnum}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="price">
+                        <mat-header-cell *matHeaderCellDef>price </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.price}} </mat-cell>
+
+                    </ng-container>
 
 
-</table>
+                    <ng-container matColumnDef="stock">
+                        <mat-header-cell *matHeaderCellDef>Stock </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.stock}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                        <mat-header-cell *matHeaderCellDef>Adjust </mat-header-cell>
+                        <mat-cell *matCellDef="let products">
+                            <a class="btn" (click)="onEdit(products)">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                        </mat-cell>
+
+                    </ng-container>
+
+
+
+                    <!-- Weight Column -->
+
+
+
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                </mat-table>
+
+
+                <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+                </mat-paginator>
+
+                <div *ngIf="pageEvent">
+                    <h5>Page Change Event Properties</h5>
+                    <div>List length: {{pageEvent.length}}</div>
+                    <div>Page size: {{pageEvent.pageSize}}</div>
+                    <div>Page index: {{pageEvent.pageIndex}}</div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+
+        <!-- *****************************form******************-->
+
+
+        <div class="col-md-7">
+
+            <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="workorder.selectedMaterial.$key">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="workorder.selectedMaterial.name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>ProductNum</label>
+                    <input class="form-control" name="prodnum" #prodnum="ngModel" [(ngModel)]="workorder.selectedMaterial.prodnum" placeholder="prodnum">
+                </div>
+                >
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input class="form-control" name="stock" #stock="ngModel" [(ngModel)]="workorder.selectedMaterial.stock" placeholder="wheatPollard">
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                        <input class="form-control" name="price" #price="ngModel" [(ngModel)]="workorder.selectedMaterial.price" placeholder="cost">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-default" type="submit">
+          <i class="fa fa-floppy-o"></i>
+           Submit</button>
+                    <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+          <i class="fa fa-repeat"></i>
+           Reset</button>
+                </div>
+            </form>
+        </div>

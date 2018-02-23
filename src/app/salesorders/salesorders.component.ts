@@ -1,9 +1,11 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
+import { DatePipe } from '@angular/common'
 import {SalesService} from '../services/sales.service';
 import {WorkorderService} from '../services/workorder.service';
 import {Observable} from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
 import {Sales} from '../models/sales.model';
+import {Customers} from '../models/customers.model';
 import {Workorder} from '../models/workorder.model';
 import {Http,Response,Headers} from '@angular/http';
 import {Products} from '../models/products.model';
@@ -25,9 +27,9 @@ export class SalesordersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<Sales[]>();
-  displayedColumns= ['id','name','product','weight','price','quantity','date','status']
+  displayedColumns= ['name','product','weight','price','quantity','date','custid']
 
-    constructor(private salesService:SalesService, private http: Http,private workorder: WorkorderService) { }
+    constructor(private salesService:SalesService,public datepipe: DatePipe, private http: Http,private workorder: WorkorderService) { }
    
    
    prdctSelect = [
@@ -52,9 +54,15 @@ weight:any;
 products:any;
 quantity:any;
 
-picker:string;
+//get customer id from table component an store here
+selectedcustomer;
+
+
+//picker:string;
 productObj2;
-   product:number;
+   product33:number;
+   customerz:string;
+   
    prodname;
    status;
     selected12: any;
@@ -64,18 +72,20 @@ productObj2;
     addNewProduct = function(product){
     this.productObj = {
       'name': product.name,
-      'product':this.product,
+      'product':this.product33,
       'weight': this.selected12,
       'price': product.price,
-     // '$key': product.$key,
+      'custid': this.customerz,
       'quantity':product.quantity,
       'date':this.date,
-      'prodnum':this.product,
+      //'id':product.custid,
+      'prodnum':this.product33,
       //'status':this.status
     }
-
-
     
+    let latest_date =this.datepipe.transform(product.date, 'yyyy-MM-dd');
+    this.date= product.date;
+    console.log(this.customerz)
     /*
     this.http.post('http://localhost:5800/salesorders', this.productObj).subscribe((res:Response)=>{
     this.isAdded = true;  
@@ -84,18 +94,18 @@ productObj2;
     
 */
 
-this.date = product.date;
-console.log(product.date);
+//this.date = product.date;
+console.log(this.date);
 this.workorder.insertSalesorder(this.productObj); 
 
   }    
 
     // select a row from the table in component.html onclick.
     
-    
+    total =  0;
     selectRow(row){
       //this.weight = row.weight*100;
-      console.log(this.product);
+      
 
 
       this.productObj2 = {
@@ -103,18 +113,24 @@ this.workorder.insertSalesorder(this.productObj);
       "weight":row.weight,
       "quantity":row.quantity,
       "date":row.date,
-      "id":row.id
+      "name":row.name,
+      "price":row.price,
+      "custid":row.custid,
+      "total":this.total
+
 
     // add row to workorder then delete 
     }
     this.workorder.insertWorkorder(this.productObj2);
+    this.workorder.insertAllInvoice(this.productObj2);
 
     console.log(row.date);
     this.workorder.delInvoice(row.$key);
   }
+  custarray = [];
   ngOnInit() {
    
-
+   
 
     var x = this. workorder.getSales();
     x.snapshotChanges().subscribe(item => {
@@ -123,16 +139,34 @@ this.workorder.insertSalesorder(this.productObj);
         var y = element.payload.toJSON();
         y["$key"] = element.key;
         this.dataSource.data.push(y as Sales[]);
+        
        
       });
+
+
+      
       this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     });
-console.log(this.dataSource);
 
+
+    var x = this. workorder.getcustomers();
+    x.snapshotChanges().subscribe(item => {
+      this.custarray = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.custarray.push(y as Customers[]);
+
+      })}  );
+
+      
   }
   
-  }
+}
+
+
+  
   export class SalesDataSource extends DataSource<any>{
     constructor(private salesService:SalesService,private workorder:WorkorderService){super();}
   

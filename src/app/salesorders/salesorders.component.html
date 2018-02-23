@@ -12,13 +12,13 @@
 
         <div sales-container>
             <mat-form-field class="example-full-width">
-                <input matInput type="text" mat-label="name" name="name" placeholder="name" ngModel><br>
+                <input matInput type="text" mat-label="name" name="name" [(ngModel)]="selectedcustomer" placeholder="name" ngModel><br>
             </mat-form-field>
 
 
             <div>
                 <mat-form-field class="example-full-width">Select Item
-                    <mat-select id="product" [(value)]="product">
+                    <mat-select id="product" [(value)]="product33">
 
                         <mat-option *ngFor="let prdct of prdctSelect" [value]='prdct.prodnum'>{{prdct.name}}</mat-option>
 
@@ -30,6 +30,20 @@
                 <input matInput type="text" mat-label="product" name="product" placeholder="product" ngModel><br>
             </mat-form-field>
             -->
+
+
+            <div>
+                <mat-form-field class="example-full-width">Cust ID**
+                    <mat-select id="customers" [(value)]="customerz">
+
+                        <mat-option *ngFor="let prdct of custarray" [value]='prdct.$key'>{{prdct.name}}</mat-option>
+
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+
             <div>
                 <mat-form-field class="example-full-width">
                     <input matInput type="number" mat-label="price" name="price" placeholder="price" ngModel><br>
@@ -118,6 +132,12 @@
                 <mat-header-cell *matHeaderCellDef> quantity </mat-header-cell>
                 <mat-cell *matCellDef="let Sales"> {{Sales.quantity}} </mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="custid">
+                <mat-header-cell *matHeaderCellDef> Cust Id </mat-header-cell>
+                <mat-cell *matCellDef="let Sales"> {{Sales.custid}} </mat-cell>
+            </ng-container>
+
 
             <ng-container matColumnDef="prodnum">
                 <mat-header-cell *matHeaderCellDef>prodnumber </mat-header-cell>

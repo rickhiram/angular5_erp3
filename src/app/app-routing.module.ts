@@ -15,7 +15,7 @@ import{SalesinvoiceComponent} from './salesinvoice/salesinvoice.component';
 import{WorkorderComponent} from './workorder/workorder.component';
 import{InvoicelistComponent} from './invoicelist/invoicelist.component';
 import {FormulationComponent}from './formulation/formulation.component';
-
+import{AllInvoicesComponent} from './all-invoices/all-invoices.component'
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:'workorder',component:WorkorderComponent},
   {path:'invoices',component:InvoicelistComponent},
   {path:'formulation',component:FormulationComponent},
-
+  {path:'allinvoices',component:AllInvoicesComponent},
   
   {
     path: '',
