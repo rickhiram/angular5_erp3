@@ -141,6 +141,7 @@ isAdded = false;
           weight: prdct.weight,
           price: prdct.price,
           prodnum: prdct.prodnum,
+          formular: prdct.formular,
   
 
         });

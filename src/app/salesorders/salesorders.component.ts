@@ -129,9 +129,9 @@ this.workorder.insertSalesorder(this.productObj);
   }
   custarray = [];
   ngOnInit() {
+   //the 
    
-   
-
+//************************************* */
     var x = this. workorder.getSales();
     x.snapshotChanges().subscribe(item => {
       this.dataSource.data = [];

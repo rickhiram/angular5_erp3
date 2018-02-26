@@ -4,4 +4,5 @@ export class Products{
     weight: number;
     price: number;
     prodnum: number;
+    formular:string;
 }

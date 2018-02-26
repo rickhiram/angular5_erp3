@@ -89,7 +89,19 @@
                     <label>ProductNum</label>
                     <input class="form-control" name="prodnum" #prodnum="ngModel" [(ngModel)]="workorder.selectedProduct.prodnum" placeholder="prodnum">
                 </div>
-                >
+                <!-- adding a formular to the product-->
+                <div>
+                    <mat-form-field class="example-full-width">Product Key**
+                        <mat-select id="customers" [(value)]="productz">
+
+                            <mat-option *ngFor="let prdct of formulararray" [value]='prdct.$key'>{{prdct.product}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+
                 <div class="form-group">
                     <label>Weight</label>
                     <input class="form-control" name="weight" #weight="ngModel" [(ngModel)]="workorder.selectedProduct.weight" placeholder="wheatPollard">

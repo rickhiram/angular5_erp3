@@ -8,6 +8,9 @@ import {PageEvent} from '@angular/material';
 import {Http,Response,Headers} from '@angular/http';
 import { NgForm } from '@angular/forms';
 import {WorkorderService} from '../services/workorder.service';
+import {FormulationService} from '../services/formulation.service';
+
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -16,7 +19,7 @@ import {WorkorderService} from '../services/workorder.service';
 export class ProductListComponent implements OnInit {
 
   private headers = new Headers({'content-type':'application/json'})
-  constructor(private http:Http, private workorder: WorkorderService ) { }
+  constructor(private http:Http, private workorder: WorkorderService, private formulation:FormulationService ) { }
  
     displayedColumns= ['name' ,'prodnum','weight','price','edit']
  
@@ -39,14 +42,14 @@ export class ProductListComponent implements OnInit {
     length = 100;
     pageSize = 10;
     pageSizeOptions = [5, 10, 25, 100];
-  
+  productz:string;
      pageEvent: PageEvent;
   
       setPageSizeOptions(setPageSizeOptionsInput: string) {
         this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
       }
 
-
+      prodarray = [];
  ngOnInit() {
 
    var x = this.workorder.getProducts();
@@ -64,6 +67,21 @@ export class ProductListComponent implements OnInit {
 console.log(this.dataSource);
 
    this.resetForm();
+// get and push products into an array
+
+var x = this.formulation.getdata();
+x.snapshotChanges().subscribe(item => {
+  this.prodarray = [];
+  item.forEach(element => {
+    var y = element.payload.toJSON();
+    y["$key"] = element.key;
+    this.prodarray.push(y as Products[]);
+
+  })}  );
+
+
+
+
  }
  
  onEdit(emp: Products) {
@@ -84,9 +102,11 @@ console.log(this.dataSource);
  onSubmit(employeeForm: NgForm) {
    if (employeeForm.value.$key == null)
      this.workorder.insertProducts(employeeForm.value);
+    
    else
      this.workorder.updateProduct(employeeForm.value);
    this.resetForm(employeeForm);
+   console.log(this.productz);
    
  }
  resetForm(employeeForm?: NgForm) {
@@ -97,7 +117,8 @@ console.log(this.dataSource);
     name:'',
     prodnum: 0,
     weight: 0,
-    price:0
+    price:0,
+    formular:'',
 
    }
  }

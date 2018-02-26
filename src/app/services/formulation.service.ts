@@ -14,7 +14,7 @@ export class FormulationService {
   constructor(private firebase :AngularFireDatabase) { this.formularList = firebase.list('formular');
   this.invoice2 = this.formularList.valueChanges();}
 
-  getData(){
+  getdata(){
     this.formularList = this.firebase.list('formular');
 
     return this.formularList;
