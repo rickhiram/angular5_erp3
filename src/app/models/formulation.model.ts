@@ -12,4 +12,5 @@ export class Formular{
     ochonga: number;
     maizeMeal: number;
     chenga: number;
+    tweight:number;
 }

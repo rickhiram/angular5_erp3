@@ -9,6 +9,7 @@ import {Http,Response,Headers} from '@angular/http';
 import { NgForm } from '@angular/forms';
 import {WorkorderService} from '../services/workorder.service';
 import {FormulationService} from '../services/formulation.service';
+import { Formular } from 'app/models/formulation.model';
 
 
 @Component({
@@ -44,12 +45,14 @@ export class ProductListComponent implements OnInit {
     pageSizeOptions = [5, 10, 25, 100];
   productz:string;
      pageEvent: PageEvent;
+     formular1;
+     formular12 = "discovery4";
   
       setPageSizeOptions(setPageSizeOptionsInput: string) {
         this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
       }
 
-      prodarray = [];
+      formulararray = [];
  ngOnInit() {
 
    var x = this.workorder.getProducts();
@@ -69,13 +72,13 @@ console.log(this.dataSource);
    this.resetForm();
 // get and push products into an array
 
-var x = this.formulation.getdata();
+var x = this.formulation.getData();
 x.snapshotChanges().subscribe(item => {
-  this.prodarray = [];
+  this.formulararray = [];
   item.forEach(element => {
     var y = element.payload.toJSON();
     y["$key"] = element.key;
-    this.prodarray.push(y as Products[]);
+    this.formulararray.push(y as Formular[]);
 
   })}  );
 
@@ -100,6 +103,7 @@ x.snapshotChanges().subscribe(item => {
 
  //for input/edit/delete form
  onSubmit(employeeForm: NgForm) {
+  console.log(this.formular1)
    if (employeeForm.value.$key == null)
      this.workorder.insertProducts(employeeForm.value);
     
@@ -109,6 +113,7 @@ x.snapshotChanges().subscribe(item => {
    console.log(this.productz);
    
  }
+ 
  resetForm(employeeForm?: NgForm) {
    if (employeeForm != null)
      employeeForm.reset();
