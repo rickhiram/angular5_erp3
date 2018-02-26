@@ -22,6 +22,12 @@ export class FormulationService {
 
     return this.formularList;
   }
+
+  getbillData(){
+    this.formularList = this.firebase.list('billmat');
+
+    return this.billMatList;
+  }
  
   insertEmployee(formular : Formular)
   {

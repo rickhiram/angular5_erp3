@@ -23,10 +23,13 @@
     <button mat-button [matMenuTriggerFor]="menu5">Manufacturing</button>
     <mat-menu #menu5="matMenu">
         <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">Formulation</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">Bill of materials</a></button>
+        <button mat-menu-item><a mat-raised-button routerLink="formulation" color="primary">Formulation</a></button>
+        <button mat-menu-item><a mat-raised-button routerLink="BillMat" color="primary">Bill of materials</a></button>
     </mat-menu>
 </div>
 
 
-<router-outlet></router-outlet>
+<router-outlet>
+
+
+</router-outlet>

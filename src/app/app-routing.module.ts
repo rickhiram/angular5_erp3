@@ -16,6 +16,8 @@ import{WorkorderComponent} from './workorder/workorder.component';
 import{InvoicelistComponent} from './invoicelist/invoicelist.component';
 import {FormulationComponent}from './formulation/formulation.component';
 import{AllInvoicesComponent} from './all-invoices/all-invoices.component'
+import{BillMatComponent} from './bill-mat/bill-mat.component';
+
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -34,7 +36,8 @@ const routes: Routes = [
   {path:'invoices',component:InvoicelistComponent},
   {path:'formulation',component:FormulationComponent},
   {path:'allinvoices',component:AllInvoicesComponent},
-  
+  {path:'BillMat',component:BillMatComponent},
+
   {
     path: '',
     children: []

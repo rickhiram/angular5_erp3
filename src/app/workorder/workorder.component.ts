@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
+import { Component, OnInit,ViewChild,Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
 import {UserService} from '../services/user.service';
@@ -25,7 +25,7 @@ export class WorkorderComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(private userService:UserService, private workorderService : WorkorderService) { }
   
-  total = 0;
+   total = 0;
   
   productObj:any;
   UpdateProduct(data){
@@ -51,16 +51,20 @@ productObj2;
       "date":row.date,
     "weight":row.weight,
     "quantity":row.quantity,
-     "total":this.total,
+     "total":row.weight * row.quantity,
     "$key":row.$key
 
 
   // add row to workorder then delete 
   }
+  
+  this.total = this.productObj2.total;
   this.workorderService. updateworkorder(this.productObj2);
+  
  // this.workorderService.insertAllInvoice(this.productObj2);
-this.total = row.weight * row.quantity
-  console.log(row.$key);
+
+  console.log(this.total);
+
  // this.workorderService.delInvoice(row.$key);
 }
 

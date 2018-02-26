@@ -1,3 +1,124 @@
-<p>
-  bill-mat works!
-</p>
+<div class="row">
+
+    <div class="col-md-12">
+        <div>
+            <mat-card>
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="product">
+                        <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.product}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="maizeGerm">
+                        <mat-header-cell *matHeaderCellDef> maizeGerm </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice. maizeGerm}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="wheatBran">
+                        <mat-header-cell *matHeaderCellDef>wheatBran </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.wheatBran}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="WheatPollard">
+                        <mat-header-cell *matHeaderCellDef>WheatPollard </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.WheatPollard}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="ricePolish">
+                        <mat-header-cell *matHeaderCellDef>ricePolish </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.ricePolish}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="fishMeal">
+                        <mat-header-cell *matHeaderCellDef>fishMeal </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.fishMeal}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="sunflowerMeal">
+                        <mat-header-cell *matHeaderCellDef>sunflowerMeal </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.sunflowerMeal}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="omena">
+                        <mat-header-cell *matHeaderCellDef>omena </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.omena}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="ochonga">
+                        <mat-header-cell *matHeaderCellDef>ochonga </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.ochonga}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="maizeMeal">
+                        <mat-header-cell *matHeaderCellDef>maizeMeal </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.maizeMeal}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="chenga">
+                        <mat-header-cell *matHeaderCellDef>chenga </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.chenga}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="tweight">
+                        <mat-header-cell *matHeaderCellDef>tweight </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.tweight}} </mat-cell>
+
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="edit">
+                        <mat-header-cell *matHeaderCellDef>Adjust </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice">
+                            <a class="btn" (click)="onEdit(invoice)">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                        </mat-cell>
+
+                    </ng-container>
+
+
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="prodnum">
+                        <mat-header-cell *matHeaderCellDef> Product num </mat-header-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.prodnum}} </mat-cell>
+                    </ng-container>
+
+
+                    <!-- Symbol Column 
+            <ng-container matColumnDef="balance">
+                <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.balance}} </mat-cell>
+            </ng-container>
+      -->
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                </mat-table>
+
+
+                <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+                </mat-paginator>
+
+                <div *ngIf="pageEvent">
+                    <h5>Page Change Event Properties</h5>
+                    <div>List length: {{pageEvent.length}}</div>
+                    <div>Page size: {{pageEvent.pageSize}}</div>
+                    <div>Page index: {{pageEvent.pageIndex}}</div>
+                </div>
+            </mat-card>
+        </div>
+    </div>

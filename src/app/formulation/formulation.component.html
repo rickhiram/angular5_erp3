@@ -8,7 +8,7 @@
                     <!-- Position Column -->
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
-                        <mat-cell *matCellDef="let invoice"> {{invoice.name}} </mat-cell>
+                        <mat-cell *matCellDef="let invoice"> {{invoice.product}} </mat-cell>
                     </ng-container>
 
                     <!-- Name Column -->
@@ -123,8 +123,8 @@
 
 
             <div class="form-group">
-                <label>chenga/Jenga</label>
-                <input type="hidden" class="form-control" name="tweight" #tweight="ngModel" [(ngModel)]="formular.selectedFormular.tweight" placeholder="chenga">
+                <label>Total Weight</label>
+                <input class="form-control" name="tweight" #tweight="ngModel" [(ngModel)]="formular.selectedFormular.tweight" placeholder="tweight">
             </div>
 
             <div class="form-group">

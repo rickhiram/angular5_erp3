@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import{BillMatComponent} from './bill-mat/bill-mat.component';
 
 import {MatInputModule} from '@angular/material/input';
 import {CommonModule} from '@angular/common';
@@ -67,7 +68,8 @@ import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
     WorkorderComponent,
     InvoicelistComponent,
     FormulationComponent,
-    AllInvoicesComponent
+    AllInvoicesComponent,
+    BillMatComponent
    
   
 

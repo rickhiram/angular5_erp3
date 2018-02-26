@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,Input } from '@angular/core';
 import {Http,Response,Headers} from '@angular/http';
 import{AppRoutingModule} from '../app-routing.module';
 import 'rxjs/add/operator/toPromise';
@@ -13,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
-import { isNumber } from 'util';
+import{WorkorderComponent} from '../workorder/workorder.component';
+
 
 @Component({
   selector: 'app-formulation',
@@ -40,7 +41,10 @@ export class FormulationComponent implements OnInit {
       * Set the paginator after the view init since this component will
       * be able to query its view for the initialized paginator.
       */
-      tweight = 10; //a product's total weight. formular's multiplier
+      //*************************component to component comm***************************** */
+      @Input() tweight2 ; //a product's total weight. formular's multiplier
+      tweight
+
 
      ngAfterViewInit() {
        this.dataSource.paginator = this.paginator;
@@ -75,10 +79,11 @@ Tweight:Formular [];
       this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     });
+    
 console.log(this.dataSource.data);
 
 
-    this.resetForm();
+    //this.resetForm();
   }
   onEdit(emp: Formular) {
     this.formular.selectedFormular = Object.assign({}, emp);
@@ -185,7 +190,7 @@ billObj;
     this.ochonga= employeeForm.value.ochonga
     this.mmeal=employeeForm.value.maizeMeal
     this.chenga=employeeForm.value.chenga
-    //this.tweight= employeeForm.value.tweight
+    this.tweight= employeeForm.value.tweight
     this.prod= employeeForm.value.product
     
     this.billObj = {
@@ -206,6 +211,9 @@ billObj;
   }
   this.formular.insertbillmat(this.billObj);
   console.log(this.billObj) 
-  console.log(this.tweight)  
+  console.log(this.tweight)
+  console.log("this is awes!",this.tweight2)  
 
-  }}
+  }
+
+}
