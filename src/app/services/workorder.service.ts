@@ -29,6 +29,8 @@ export class WorkorderService {
 
   selectedWorkorder: Workorder = new Workorder();
   selectedProduct: Products = new Products();
+  selectedCustomer: Customers = new Customers();
+
   selectedinvoice3: Invoice = new Invoice();
   selectedMaterial: Materials = new Materials();
  // selectedInvoice: Workorder = new Workorder();
@@ -159,7 +161,7 @@ isAdded = false;
             location: cust.location,
             phone:cust.phone,
            balance: cust.balance,
-           custid:cust.custid
+           orderNum:cust.orderNum
     
   
           });
@@ -186,6 +188,8 @@ isAdded = false;
       
       
         }
+// #######################UPDATE#############################
+
 
         updateProduct(product : Products){
           this.ProductList.update(product.$key,
@@ -226,15 +230,16 @@ isAdded = false;
         }
 
 
-        updatecustomers(customers : Customers){
-          this.ProductList.update(customers.$key,
+        updatecustomers(customers){
+          this.CustomersList.update(customers.$key,
             {
               name: customers.name,
              // $key:product.$key, this isnt important
               location:customers.location,
-              custid: customers.custid,
+              //custid: customers.custid,
               balance: customers.balance,
               phone: customers.phone,
+              orderNum: customers.orderNum,
               
             });
         }

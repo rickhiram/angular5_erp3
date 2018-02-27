@@ -8,4 +8,5 @@ export class Customers{
      phone:number;
      location: string;
      custid: number;
+     orderNum:number;
 }

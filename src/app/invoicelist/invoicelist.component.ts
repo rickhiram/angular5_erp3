@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 //import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
+import { WorkorderService } from '../services/workorder.service';
+import { Customers } from 'app/models/customers.model';
 
 
 
@@ -18,9 +20,9 @@ export class InvoicelistComponent implements OnInit {
   
  
   
-  displayedColumns= ['name' ,'prodnum','quantity','total','edit']
+  displayedColumns= ['name' ,'phone','ordernum','balance','edit']
   
-  dataSource = new MatTableDataSource<Invoice[]>();
+  dataSource = new MatTableDataSource<Customers[]>();
 
   
 
@@ -36,7 +38,7 @@ export class InvoicelistComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   
-  constructor(private InvoiceService: InvoiceServiceService, private tostr: ToastrService) { }
+  constructor(private InvoiceService: InvoiceServiceService,private workorder:WorkorderService, private tostr: ToastrService) { }
 
   length = 100;
   pageSize = 10;
@@ -67,13 +69,13 @@ productObj2;
    
 
 
-    var x = this.InvoiceService.getData();
+    var x = this.workorder.getcustomers();
     x.snapshotChanges().subscribe(item => {
       this.dataSource.data = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         y["$key"] = element.key;
-        this.dataSource.data.push(y as Invoice[]);
+        this.dataSource.data.push(y as Customers[]);
        
       });
       this.dataSource.paginator = this.paginator;
@@ -83,8 +85,8 @@ console.log(this.dataSource);
 
   }
  
-  onEdit(emp: Invoice) {
-    this.InvoiceService.selectedInvoice = Object.assign({}, emp);
+  onEdit(emp) {
+    this.workorder.selectedCustomer = Object.assign({}, emp);
   }
  
   onDelete(key: string) {

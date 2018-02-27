@@ -174,7 +174,7 @@ billObj;
       ochonga:0,
       maizeMeal: 0,
       chenga: 0,
-      tweight:this.tweight
+      tweight:this.tweight2
 
     }
   }

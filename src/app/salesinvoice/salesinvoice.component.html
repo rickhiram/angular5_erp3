@@ -11,18 +11,28 @@
     <div class="col-md-7">
 
         <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
-            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="invoiceService.selectedInvoice.$key">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="workorder.selectedCustomer.$key">
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" name="name" #name="ngModel" [(ngModel)]="invoiceService.selectedInvoice.name" placeholder="Name">
+                <input class="form-control" name="name" #name="ngModel" [(ngModel)]="workorder.selectedCustomer.name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label>prodnum</label>
-                <input class="form-control" name="prodnum" #prodnum="ngModel" [(ngModel)]="invoiceService.selectedInvoice.prodnum" placeholder="prodnum">
+                <label>phone</label>
+                <input class="form-control" name="phone" #phone="ngModel" [(ngModel)]="workorder.selectedCustomer.phone" placeholder="phone">
             </div>
             <div class="form-group">
-                <label>quantity</label>
-                <input class="form-control" name="quantity" #quantity="ngModel" [(ngModel)]="invoiceService.selectedInvoice.quantity" placeholder="quantity">
+                <label>ordernum</label>
+                <input class="form-control" name="orderNum" #orderNum="ngModel" [(ngModel)]="workorder.selectedCustomer.orderNum" placeholder="ordernum">
+            </div>
+
+            <div class="form-group">
+                <label>location</label>
+                <input class="form-control" name="location" #location="ngModel" [(ngModel)]="workorder.selectedCustomer.location" placeholder="location">
+            </div>
+
+            <div class="form-group">
+                <label>balance</label>
+                <input class="form-control" name="balance" #balance="ngModel" [(ngModel)]="workorder.selectedCustomer.balance" placeholder="balance">
             </div>
 
             <div class="form-group">
@@ -31,7 +41,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-dollar"></i>
                     </div>
-                    <input class="form-control" name="total" #total="ngModel" [(ngModel)]="invoiceService.selectedInvoice.total" placeholder="Total">
+                    <input class="form-control" name="balance" #balance="ngModel" [(ngModel)]="workorder.selectedCustomer.balance" placeholder="balance">
                 </div>
             </div>
 
@@ -41,8 +51,14 @@
       <i class="fa fa-floppy-o"></i>
        Submit</button>
                 <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+
       <i class="fa fa-repeat"></i>
        Reset</button>
+                <button class="btn btn-default" type="button" (click)="addBalance(employeeForm)">
+
+            <i class="fa fa-repeat"></i>
+             testbal</button>
+
             </div>
         </form>
     </div>

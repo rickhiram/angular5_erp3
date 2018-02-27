@@ -1,58 +1,62 @@
-<app-formulation [tweight2]="total">
-</app-formulation>
+<div class="row">
+    <app-formulation [tweight2]="total">
+    </app-formulation>
+
+    <div class="col-md-5">
+
+        <mat-card>
+            <h2>To Work Order</h2>
+            <div>
+
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="product">
+                        <mat-header-cell *matHeaderCellDef>Product </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.product}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="key">
+                        <mat-header-cell *matHeaderCellDef> key </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.$key}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.weight}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="quantity">
+                        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.quantity}} </mat-cell>
+                    </ng-container>
 
 
-<mat-card>
-    <h2>To Work Order</h2>
-    <div>
+                    <!-- total goes here -->
+                    <ng-container matColumnDef="total">
+                        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.total}} </mat-cell>
+                    </ng-container>
 
-        <mat-table #table [dataSource]="dataSource">
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="date">
+                        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.date}} </mat-cell>
+                    </ng-container>
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="product">
-                <mat-header-cell *matHeaderCellDef>Product </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.product}} </mat-cell>
-            </ng-container>
+                    <ng-container matColumnDef="orders">
+                        <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
+                        <mat-cell *matCellDef="let user"><a mat-raised-button color="primary" routerLink="../invoice">Invoice</a></mat-cell>
+                    </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="key">
-                <mat-header-cell *matHeaderCellDef> key </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.$key}} </mat-cell>
-            </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></mat-row>
+                </mat-table>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="weight">
-                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.weight}} </mat-cell>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="quantity">
-                <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.quantity}} </mat-cell>
-            </ng-container>
-
-
-            <!-- total goes here -->
-            <ng-container matColumnDef="total">
-                <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.total}} </mat-cell>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="date">
-                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.date}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="orders">
-                <mat-header-cell *matHeaderCellDef> Orders </mat-header-cell>
-                <mat-cell *matCellDef="let user"><a mat-raised-button color="primary" routerLink="../invoice">Invoice</a></mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></mat-row>
-        </mat-table>
-
+            </div>
+        </mat-card>
     </div>
-</mat-card>
+</div>
