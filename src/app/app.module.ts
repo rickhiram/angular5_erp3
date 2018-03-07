@@ -50,6 +50,9 @@ import {FormulationComponent}from './formulation/formulation.component';
 import {FormulationService} from './services/formulation.service';
 import { DatePipe } from '@angular/common'
 import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 
 @NgModule({
   declarations: [
@@ -97,7 +100,8 @@ import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule
 
    
     

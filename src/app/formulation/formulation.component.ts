@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,Input } from '@angular/core';
+import { Component, OnInit,ViewChild,Input,Output } from '@angular/core';
 import {Http,Response,Headers} from '@angular/http';
 import{AppRoutingModule} from '../app-routing.module';
 import 'rxjs/add/operator/toPromise';
@@ -178,6 +178,8 @@ billObj;
 
     }
   }
+
+  @Output() toggle2 = false;
   mulTiply = function(employeeForm)
   {
     this.mgerm= employeeForm.value.maizeGerm
@@ -212,8 +214,10 @@ billObj;
   this.formular.insertbillmat(this.billObj);
   console.log(this.billObj) 
   console.log(this.tweight)
-  console.log("this is awes!",this.tweight2)  
-
+  console.log("this is awes!",this.tweight2) 
+  
+  this.router.navigate(['/allinvoices']);
+this.toggle2 = true;
   }
 
 }

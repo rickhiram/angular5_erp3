@@ -19,7 +19,7 @@ export class AllInvoicesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<Invoice[]>();
-  displayedColumns= ['name','product','quantity','weight','price','date']
+  displayedColumns= ['name','product','quantity','weight' ,'price','cost','date']
   constructor(private workorder:WorkorderService) { }
 
 
@@ -42,21 +42,25 @@ productObj2;
     selectRow(row){
      
         this.productObj2 = {
+          "$key": row.$key,
         "product":row.product,
       "weight":row.weight,
       "quantity":row.quantity,
       "date":row.date,
       "name":row.name,
-      "price":row.price
-
+      "price":row.price,
+     "cost":row.price * row.quantity ,
+      "custid":row.custid
     // add row to workorder then delete 
     }
     
 this.weight = row.weight;
 this.quantity= row.quantity;
 this.price =row.price;
-
 this.totalamount = this.quantity * this.price;
+this.workorder.updateallinv(this.productObj2)
+this.workorder.updatecustomere(this.productObj2)
+
 console.log(this.totalamount)
 
     

@@ -25,8 +25,14 @@
                     </ng-container>
 
                     <ng-container matColumnDef="date">
-                        <mat-header-cell *matHeaderCellDef>price </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Date </mat-header-cell>
                         <mat-cell *matCellDef="let products"> {{products.date}} </mat-cell>
+
+                    </ng-container>
+
+                    <ng-container matColumnDef="cost">
+                        <mat-header-cell *matHeaderCellDef>Cost </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.cost}} </mat-cell>
 
                     </ng-container>
 

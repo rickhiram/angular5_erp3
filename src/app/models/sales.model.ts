@@ -11,4 +11,6 @@ export class Sales{
      date:Date;
      prodnum:number;
      quantity:number;
+     $key:string;
+     cost:number;
 }

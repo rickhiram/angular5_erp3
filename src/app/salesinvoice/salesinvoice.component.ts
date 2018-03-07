@@ -47,7 +47,7 @@ export class SalesinvoiceComponent implements OnInit {
       $key: null,
       name: '',
       phone: 0,
-      orderNum:0,
+      orderval:0,
       balance:0,
       location:'',
       custid:0,

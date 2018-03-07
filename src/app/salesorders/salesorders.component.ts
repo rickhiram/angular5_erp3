@@ -101,7 +101,7 @@ this.workorder.insertSalesorder(this.productObj);
   }    
 
     // select a row from the table in component.html onclick.
-    
+    cost = 0;
     total =  0;
     selectRow(row){
       //this.weight = row.weight*100;
@@ -116,8 +116,8 @@ this.workorder.insertSalesorder(this.productObj);
       "name":row.name,
       "price":row.price,
       "custid":row.custid,
-      "total":this.total
-
+      "total":this.total,
+      "cost":this.cost
 
     // add row to workorder then delete 
     }

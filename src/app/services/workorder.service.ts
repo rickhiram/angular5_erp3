@@ -124,7 +124,8 @@ isAdded = false;
           weight:  wrk.weight,
           quantity:wrk.quantity,
           price: wrk.price,
-          key:wrk.custid
+          key:wrk.custid,
+          cost:wrk.cost,
           
     
           
@@ -161,7 +162,7 @@ isAdded = false;
             location: cust.location,
             phone:cust.phone,
            balance: cust.balance,
-           orderNum:cust.orderNum
+           orderval:cust.orderval
     
   
           });
@@ -203,6 +204,18 @@ isAdded = false;
             });
         }
 
+        updateallinv(cust:Sales){
+          this.AllInvoiceList.update(cust.$key,
+            {
+
+         // product: cust.prodnum;
+          weight: cust.weight,
+          quantity:cust.quantity,
+          date: cust.date,
+          name: cust.name,
+          price: cust.price,
+          cost: cust.cost,
+         } ); }
 
         updateworkorder(product : Workorder){
           this.WorkorderList.update(product.$key,
@@ -239,11 +252,18 @@ isAdded = false;
               //custid: customers.custid,
               balance: customers.balance,
               phone: customers.phone,
-              orderNum: customers.orderNum,
+              orderval: customers.orderval,
               
             });
         }
 
+      updatecustomere(cust){
+        this.CustomersList.update(cust.custid,
+          {
+    
+        orderval: cust.cost
+      });
+    }
 
         deleteEmployee($key : string){
           this.ProductList.remove($key);

@@ -1,33 +1,34 @@
-<div container class="top">
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">place order</a></button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu2">Sales</button>
-    <mat-menu #menu2="matMenu">
-        <button mat-menu-item><a  mat-raised-button routerLink="table" color="primary">sales Invoice</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">place order</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="table" color="primary">Customers</a></button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu3">Purchase</button>
-    <mat-menu #menu3="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu4">Inventory</button>
-    <mat-menu #menu4="matMenu">
-        <button mat-menu-item><a   mat-raised-button routerLink="materials" color="primary">materials</a></button>
-        <button mat-menu-item><a   mat-raised-button routerLink="productlist" color="primary">products</a></button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menu5">Manufacturing</button>
-    <mat-menu #menu5="matMenu">
-        <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="formulation" color="primary">Formulation</a></button>
-        <button mat-menu-item><a mat-raised-button routerLink="BillMat" color="primary">Bill of materials</a></button>
-    </mat-menu>
-</div>
-
+<mat-toolbar color="primary">
+    <div container class="top">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">place order</a></button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu2">Sales</button>
+        <mat-menu #menu2="matMenu">
+            <button mat-menu-item><a  mat-raised-button routerLink="invoice" color="primary">sales Invoice</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">place order</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="table" color="primary">Customers</a></button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu3">Purchase</button>
+        <mat-menu #menu3="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu4">Inventory</button>
+        <mat-menu #menu4="matMenu">
+            <button mat-menu-item><a   mat-raised-button routerLink="materials" color="primary">materials</a></button>
+            <button mat-menu-item><a   mat-raised-button routerLink="productlist" color="primary">products</a></button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu5">Manufacturing</button>
+        <mat-menu #menu5="matMenu">
+            <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="formulation" color="primary">Formulation</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="BillMat" color="primary">Bill of materials</a></button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
 
 <router-outlet>
 

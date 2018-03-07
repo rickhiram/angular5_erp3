@@ -18,7 +18,7 @@ import {PageEvent} from '@angular/material';
 })
 export class WorkorderComponent implements OnInit {
   //dataSource = new workorderDataSource(this.workorderService);
-  displayedColumns= ['date','product','weight','quantity','total','key'];
+  displayedColumns= ['date','product','weight','quantity','total'];
   dataSource = new MatTableDataSource<Workorder[]>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,7 +26,8 @@ export class WorkorderComponent implements OnInit {
   constructor(private userService:UserService, private workorderService : WorkorderService) { }
   
    total = 0;
-  
+  toggle = false;
+  toggle2 = true;
   productObj:any;
   UpdateProduct(data){
     this.productObj = {
@@ -57,7 +58,8 @@ productObj2;
 
   // add row to workorder then delete 
   }
-  
+  this.toggle = true;
+  this.toggle2 = false;
   this.total = this.productObj2.total;
   this.workorderService. updateworkorder(this.productObj2);
   
