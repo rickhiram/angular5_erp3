@@ -53,7 +53,19 @@ export class ProductListComponent implements OnInit {
       }
 
       formulararray = [];
+      subject = [];
  ngOnInit() {
+
+
+  this.workorder.Products2.subscribe((val)=>{
+  val.forEach(element =>{
+    var x = element.payload.toJSON();
+    this.subject.push(x);
+  })
+    console.log(this.subject);
+  })
+
+
 
    var x = this.workorder.getProducts();
    x.snapshotChanges().subscribe(item => {

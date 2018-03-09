@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
 import {Workorder} from '../models/workorder.model';
 import {Customers} from '../models/customers.model';
 import {Sales} from '../models/sales.model';
@@ -13,7 +15,7 @@ import { Materials } from 'app/models/materials.model';
 export class WorkorderService {
   workorder2: Observable<any[]>;
   salesorder2: Observable<any[]>;
-  Products2: Observable<any[]>;
+ // Products2: Observable<any[]>;
   invoice2: Observable<any[]>;
   invoice3: Observable<any[]>;
   customers2: Observable<any[]>;
@@ -33,12 +35,16 @@ export class WorkorderService {
 
   selectedinvoice3: Invoice = new Invoice();
   selectedMaterial: Materials = new Materials();
+
+ Products2 = new BehaviorSubject<any>('');
+castproduct = this.Products2.asObservable();
+
  // selectedInvoice: Workorder = new Workorder();
   //private serviceUrl = ' http://localhost:6100/workorder';
   constructor(private firebase :AngularFireDatabase) {this.WorkorderList = firebase.list('Workorder')
   this.workorder2 = this.WorkorderList.valueChanges(); this.salesorderList = firebase.list('sales')
   this.salesorder2 = this.salesorderList.valueChanges();this.ProductList = firebase.list('products')
-  this.Products2 = this.ProductList.valueChanges();this.InvoiceList = firebase.list('invoices')
+  this.castproduct = this.ProductList.valueChanges();this.InvoiceList = firebase.list('invoices')
   this.invoice2 = this.InvoiceList.valueChanges(); this.CustomersList = firebase.list('customers')
   this.customers2 = this.CustomersList.valueChanges();this.AllInvoiceList = firebase.list('allinvoices')
   this.invoice3 = this.AllInvoiceList.valueChanges();this.MaterialsList = firebase.list('materials')
@@ -162,7 +168,8 @@ isAdded = false;
             location: cust.location,
             phone:cust.phone,
            balance: cust.balance,
-           orderval:cust.orderval
+           orderval:cust.orderval,
+           custid:cust.custid
     
   
           });

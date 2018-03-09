@@ -5,6 +5,9 @@ import {Observable} from 'rxjs/Observable';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
 import { Invoice } from 'app/models/invoice.model';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -20,7 +23,7 @@ export class AllInvoicesComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Invoice[]>();
   displayedColumns= ['name','product','quantity','weight' ,'price','cost','date']
-  constructor(private workorder:WorkorderService) { }
+  constructor(private workorder:WorkorderService,private router:Router) { }
 
 
   length = 100;
@@ -60,7 +63,7 @@ this.price =row.price;
 this.totalamount = this.quantity * this.price;
 this.workorder.updateallinv(this.productObj2)
 this.workorder.updatecustomere(this.productObj2)
-
+this.router.navigate(['/invoice']);
 console.log(this.totalamount)
 
     

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import{BillMatComponent} from './bill-mat/bill-mat.component';
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {MatInputModule} from '@angular/material/input';
 import {CommonModule} from '@angular/common';
@@ -108,7 +109,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
   ],
   providers: [UserService,ProductsService,SalesService, 
-    InvoiceServiceService, WorkorderService, FormulationService,DatePipe],
+    InvoiceServiceService, WorkorderService, FormulationService,DatePipe,{ provide: LocationStrategy, 
+      useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
     <div container class="top">
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <button mat-button [matMenuTriggerFor]="menu">Reports</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item><a  mat-raised-button routerLink="workorder" color="primary">WorkOrders</a></button>
-            <button mat-menu-item><a mat-raised-button routerLink="orders" color="primary">place order</a></button>
+            <button mat-menu-item><a  mat-raised-button routerLink="allinvoices" color="primary">WorkOrders</a></button>
+            <button mat-menu-item><a mat-raised-button routerLink="BillMat" color="primary">place order</a></button>
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="menu2">Sales</button>
         <mat-menu #menu2="matMenu">

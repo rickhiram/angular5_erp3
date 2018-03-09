@@ -11,6 +11,8 @@ import {Http,Response,Headers} from '@angular/http';
 import {Products} from '../models/products.model';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -29,7 +31,7 @@ export class SalesordersComponent implements OnInit {
   dataSource = new MatTableDataSource<Sales[]>();
   displayedColumns= ['name','product','weight','price','quantity','date','custid']
 
-    constructor(private salesService:SalesService,public datepipe: DatePipe, private http: Http,private workorder: WorkorderService) { }
+    constructor(private router:Router ,private salesService:SalesService,public datepipe: DatePipe, private http: Http,private workorder: WorkorderService) { }
    
    
    prdctSelect = [
@@ -121,11 +123,13 @@ this.workorder.insertSalesorder(this.productObj);
 
     // add row to workorder then delete 
     }
-    this.workorder.insertWorkorder(this.productObj2);
+    //this.workorder.insertWorkorder(this.productObj2);
+    //**workorder to be filled by user */
     this.workorder.insertAllInvoice(this.productObj2);
 
     console.log(row.date);
     this.workorder.delInvoice(row.$key);
+    this.router.navigate(['/allinvoices']);
   }
   custarray = [];
   ngOnInit() {

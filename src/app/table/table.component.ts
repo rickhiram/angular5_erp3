@@ -9,6 +9,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {Http,Response,Headers} from '@angular/http';
 import {User} from '../models/user.model';
 import { Invoice } from '../models/invoice.model';
+import { Customers } from 'app/models/customers.model';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -58,14 +59,16 @@ ngAfterViewInit() {
 
     // input data from form to customerslist firebase
 
-
-    addNewProduct = function(customer){
+    orderval = 0;
+    addNewProduct = function(customer:Customers){
+       
       this.productObj = {
         'name': customer.name,
         'phone':customer.phone,
         'location':customer.location,
         'balance':customer.balance,
-        'custid':customer.custid
+        'custid':customer.$key,
+        'orderval':this.orderval
 
         
         //'status':this.status
@@ -73,7 +76,7 @@ ngAfterViewInit() {
   
   
       
-  
+  console.log(customer.$key)
   
  
   this.workorderService.insertcustomers(this.productObj); 

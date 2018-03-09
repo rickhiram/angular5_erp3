@@ -20,7 +20,7 @@ import{BillMatComponent} from './bill-mat/bill-mat.component';
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'home',component:HomeComponent},
   {path:'products',component:ProductsComponent},
   {path:'update/:id',component:UpdateComponent},
   {path:'menubar/:id',component:MenubarComponent},
@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'materials',component:MaterialsComponent},
   {path:'customers',component:CustomersComponent},
   {path:'customersupdate',component:CustomersupdateComponent},
-  {path:'table',component:TableComponent},
+  {path:'',component:TableComponent},
   {path:'productlist',component:ProductListComponent},
   {path:'orders',component:SalesordersComponent},
   {path:'invoice',component:SalesinvoiceComponent},

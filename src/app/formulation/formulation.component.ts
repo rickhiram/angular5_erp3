@@ -216,7 +216,7 @@ billObj;
   console.log(this.tweight)
   console.log("this is awes!",this.tweight2) 
   
-  this.router.navigate(['/allinvoices']);
+  this.router.navigate(['/BillMat']);
 this.toggle2 = true;
   }
 

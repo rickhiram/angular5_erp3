@@ -1,8 +1,8 @@
+<div *ngIf="toggle" class="col-md-12">
+    <app-formulation [tweight2]="total">
+    </app-formulation>
+</div>
 <div class="row">
-    <div *ngIf="toggle" class="col-md-12">
-        <app-formulation [tweight2]="total">
-        </app-formulation>
-    </div>
     <div *ngIf="toggle2" class="col-md-7">
 
         <mat-card>
@@ -59,5 +59,127 @@
 
             </div>
         </mat-card>
+    </div>
+
+    <!-- ##################################################### enter workorder form######-->
+    <div class="col-md-5">
+        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="workorderService.selectedWorkorder.$key">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="product" #product="ngModel" [(ngModel)]="workorderService.selectedWorkorder.product" placeholder="Name">
+            </div>
+
+            <div>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" name="date" placeholder="Choose a date" ngModel>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@ product1 weight1 @@@@@@@@@@@@-->
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">Select Item
+                        <mat-select id="product" [(value)]="product33">
+
+                            <mat-option *ngFor="let prdct of prdctSelect" [value]='prdct.prodnum'>{{prdct.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field required=true>Weight
+                        <mat-select [(value)]="selected12">
+
+
+                            <mat-option value="70">70kg</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field>Quantity
+                        <input matInput name="quantity" #quantity0 (keyup.enter)="onkey0(quantity0.value)" (blur)="onkey0(quantity0.value)">
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@ product2 weight2 @@@@@@@@@@@@-->
+            <div class="row">
+                <div *ngIf !="show" class="col-md-4">
+                    <mat-form-field class="example-full-width">Select Item
+                        <mat-select id="product" [(value)]="product33">
+
+                            <mat-option *ngFor="let prdct of prdctSelect" [value]='prdct.prodnum'>{{prdct.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field required=true>Weight
+                        <mat-select [(value)]="selected13">
+
+
+
+                            <mat-option value="20">20kg</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field>Quantity
+                        <input matInput name="quantity" #quantity1 (keyup.enter)="onkey(quantity1.value)" (blur)="onkey(quantity1.value)">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@ product weight3 @@@@@@@@@@@@-->
+            <div class="row">
+                <div *ngIf !="show" class="col-md-4">
+                    <mat-form-field class="example-full-width">Select Item
+                        <mat-select id="product" [(value)]="product33">
+
+                            <mat-option *ngFor="let prdct of prdctSelect" [value]='prdct.prodnum'>{{prdct.name}}</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field required=true>Weight
+                        <mat-select [(value)]="selected14">
+
+                            <mat-option value="10">10kg</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+
+                    <mat-form-field>Quantity
+                        <input matInput name="quantity" #quantity2 (keyup.enter)="onkey1(quantity2.value)" (blur)="onkey1(quantity2.value)">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">
+<i class="fa fa-floppy-o"></i>
+Submit</button>
+                <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+<i class="fa fa-repeat"></i>
+Reset</button>
+                <button class="btn btn-default" type="submit" (click)="  mulTiply(employeeForm)">
+<i class="fa fa-repeat"></i>
+ billMat</button>
+            </div>
+        </form>
     </div>
 </div>

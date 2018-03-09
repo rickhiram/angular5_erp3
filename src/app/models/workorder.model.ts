@@ -1,5 +1,5 @@
 export class Workorder{
-    product: number;
+    product: string;
     weight: number;
     quantity: number;
     date: string;
