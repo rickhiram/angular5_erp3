@@ -151,6 +151,7 @@ isAdded = false;
           price: prdct.price,
           prodnum: prdct.prodnum,
           formular: prdct.formular,
+          $key:prdct.$key
   
 
         });

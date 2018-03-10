@@ -29,7 +29,7 @@ export class SalesordersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<Sales[]>();
-  displayedColumns= ['name','product','weight','price','quantity','date','custid']
+  displayedColumns= ['name','product','price','quantity','date']
 
     constructor(private router:Router ,private salesService:SalesService,public datepipe: DatePipe, private http: Http,private workorder: WorkorderService) { }
    
@@ -64,16 +64,19 @@ selectedcustomer;
 productObj2;
    product33:number;
    customerz:string;
-   
+   keyz:Object = {};
    prodname;
    status;
     selected12: any;
     productObj: Object = {};
     
-    
+    custname
     addNewProduct = function(product){
+      this.custbyID = this.custarray.filter(
+        cust => cust.$key === this.customerz);
+      this.custname = this.custbyID["0"].name
     this.productObj = {
-      'name': product.name,
+      'name':  this.custname,
       'product':this.product33,
       'weight': this.selected12,
       'price': product.price,
@@ -85,6 +88,19 @@ productObj2;
       //'status':this.status
     }
     
+    //filter the array with $key and extract name
+  
+      
+      //let cookieData = '{"key":"value"}'
+
+
+      console.log( this.custbyID["0"].name ) //ELLEGANT SOLUTION!!!
+     
+      console.log(this.custname)
+
+
+
+
     let latest_date =this.datepipe.transform(product.date, 'yyyy-MM-dd');
     this.date= product.date;
     console.log(this.customerz)
@@ -131,10 +147,11 @@ this.workorder.insertSalesorder(this.productObj);
     this.workorder.delInvoice(row.$key);
     this.router.navigate(['/allinvoices']);
   }
+  custbyID
   custarray = [];
   ngOnInit() {
    //the 
-   
+  
 //************************************* */
     var x = this. workorder.getSales();
     x.snapshotChanges().subscribe(item => {

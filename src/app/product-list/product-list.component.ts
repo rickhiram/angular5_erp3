@@ -57,12 +57,14 @@ export class ProductListComponent implements OnInit {
  ngOnInit() {
 
 
-  this.workorder.Products2.subscribe((val)=>{
-  val.forEach(element =>{
+  this.workorder.castproduct.subscribe((val)=>{
+
+   
+      this.subject.push(val[1].phone);
     
-  })
-    console.log(this.subject);
-  })
+    console.log("val is",val);
+ 
+  });
 
 
 

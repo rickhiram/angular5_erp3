@@ -22,7 +22,7 @@ export class AllInvoicesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<Invoice[]>();
-  displayedColumns= ['name','product','quantity','weight' ,'price','cost','date']
+  displayedColumns= ['name','product','quantity','weight','cost']
   constructor(private workorder:WorkorderService,private router:Router) { }
 
 

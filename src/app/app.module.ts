@@ -54,6 +54,7 @@ import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSortModule} from '@angular/material/sort';
 
 
 
@@ -97,6 +98,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatCardModule,
     FlexLayoutModule,
     MatMenuModule,
+    MatSortModule,
     MatIconModule,
     MatButtonModule,
     MatNativeDateModule,
