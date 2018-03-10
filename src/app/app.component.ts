@@ -9,10 +9,17 @@ import {MatIconRegistry} from '@angular/material';
 })
 export class AppComponent {
   title = 'app works!';
-  
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  shouldRun = true;
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer ) {
     iconRegistry.addSvgIcon(
         'thumbs-up',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/img/examples/thumbup-icon.svg'));
+        sanitizer.bypassSecurityTrustResourceUrl('assets/img/examples/material-design-icons/navigation/svg/design/ic_arrow_drop_down_18px.svg'));
+  }
+
+  ngOnInit(){
+
+  }
+  toggle(){
+this.shouldRun = false;
   }
 }

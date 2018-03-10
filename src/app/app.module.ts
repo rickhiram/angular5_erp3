@@ -52,6 +52,8 @@ import {FormulationService} from './services/formulation.service';
 import { DatePipe } from '@angular/common'
 import {AllInvoicesComponent}from './all-invoices/all-invoices.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -93,6 +95,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatTableModule,
     HttpClientModule,
     MatCardModule,
+    FlexLayoutModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
@@ -102,7 +105,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
     MatPaginatorModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule
 
    
     

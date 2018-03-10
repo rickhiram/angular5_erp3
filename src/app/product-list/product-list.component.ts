@@ -59,8 +59,7 @@ export class ProductListComponent implements OnInit {
 
   this.workorder.Products2.subscribe((val)=>{
   val.forEach(element =>{
-    var x = element.payload.toJSON();
-    this.subject.push(x);
+    
   })
     console.log(this.subject);
   })
