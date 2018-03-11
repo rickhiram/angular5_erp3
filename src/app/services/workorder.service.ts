@@ -139,7 +139,7 @@ isAdded = false;
         });
       }
 
-
+default = 0;
       insertProducts(prdct:Products){
        
 
@@ -151,7 +151,9 @@ isAdded = false;
           price: prdct.price,
           prodnum: prdct.prodnum,
           formular: prdct.formular,
-          $key:prdct.$key
+         big70: this.default,
+         medium20:this.default,
+         small10: this.default
   
 
         });
@@ -211,6 +213,44 @@ isAdded = false;
               
             });
         }
+
+        update70(product){
+
+          this.ProductList.update(product.$key,
+            {
+            
+              big70: product.weight,
+              
+              
+            });
+
+        }
+
+        update20(product){
+
+          this.ProductList.update(product.$key,
+            {
+            
+              medium20: product.weight,
+              
+              
+            });
+
+        }
+
+
+        update10(product){
+
+          this.ProductList.update(product.$key,
+            {
+            
+              small10: product.weight,
+              
+              
+            });
+
+        }
+
 
         updateallinv(cust:Sales){
           this.AllInvoiceList.update(cust.$key,

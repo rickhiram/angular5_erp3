@@ -12,22 +12,22 @@
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="prodnum">
-                        <mat-header-cell *matHeaderCellDef> Prodnum </mat-header-cell>
-                        <mat-cell *matCellDef="let products"> {{products.prodnum}} </mat-cell>
+                    <ng-container matColumnDef="big70">
+                        <mat-header-cell *matHeaderCellDef> 70kg </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.big70}} </mat-cell>
                     </ng-container>
 
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="price">
-                        <mat-header-cell *matHeaderCellDef>price </mat-header-cell>
-                        <mat-cell *matCellDef="let products"> {{products.price}} </mat-cell>
+                    <ng-container matColumnDef="medium20">
+                        <mat-header-cell *matHeaderCellDef>20kg </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.medium20}} </mat-cell>
 
                     </ng-container>
 
 
-                    <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef>weight </mat-header-cell>
-                        <mat-cell *matCellDef="let products"> {{products.weight}} </mat-cell>
+                    <ng-container matColumnDef="small10">
+                        <mat-header-cell *matHeaderCellDef>10 kg </mat-header-cell>
+                        <mat-cell *matCellDef="let products"> {{products.small10}} </mat-cell>
 
                     </ng-container>
 
@@ -80,7 +80,7 @@
         <div class="col-md-5">
 
             <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
-                <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="workorder.selectedProduct.$key">
+                <input type="hidden" class="form-control" name="$key" #$key="ngModel" [(ngModel)]="workorder.selectedProduct.$key">
                 <div class="form-group">
                     <label>Name</label>
                     <input class="form-control" name="name" #name="ngModel" [(ngModel)]="workorder.selectedProduct.name" placeholder="Name">

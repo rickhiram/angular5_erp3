@@ -5,6 +5,8 @@ import {WorkorderService} from '../services/workorder.service';
 import {Observable} from 'rxjs/Observable';
 import {DataSource} from '@angular/cdk/collections';
 import {Sales} from '../models/sales.model';
+
+
 import {Customers} from '../models/customers.model';
 import {Workorder} from '../models/workorder.model';
 import {Http,Response,Headers} from '@angular/http';
@@ -12,6 +14,7 @@ import {Products} from '../models/products.model';
 import {MatPaginator,MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
 import { Router } from '@angular/router';
+import { Console } from '@angular/core/src/console';
 
 
 
@@ -34,23 +37,7 @@ export class SalesordersComponent implements OnInit {
     constructor(private router:Router ,private salesService:SalesService,public datepipe: DatePipe, private http: Http,private workorder: WorkorderService) { }
    
    
-   prdctSelect = [
-     {name:'kienyeji',weight:78, price:1290,prodnum:1001},
-     {name:'layers',weight:78, price:1290,prodnum:1002},
-     {name:'chick mash',weight:78, price:1290,prodnum:1003},
-     {name:'growers mash',weight:78, price:1290,prodnum:1004},
-     {name:'Pig Starter',weight:78, price:1290,prodnum:1005},
-     {name:'Pig Finisher',weight:78, price:1290,prodnum:1006},
-     {name:'Broiler Starter',weight:78, price:1290,prodnum:1007},
-     {name:'Broiler Finisher',weight:78, price:1290,prodnum:1008},
-     {name:'Dog Meal',weight:78, price:1290,prodnum:1009},
-     {name:'Rabbit Meal',weight:78, price:1290,prodnum:1010},
-     {name:'Dairy Meal',weight:78, price:1290,prodnum:1011},
-     {name:'Maize Germ',weight:78, price:1290,prodnum:1012},
-     {name:'Wheat Pollard',weight:78, price:1290,prodnum:1013},
-     {name:'Wheat Bran',weight:78, price:1290,prodnum:1014},
-     {name:'Sunflower',weight:78, price:1290,prodnum:1015}
-   ];
+  
 
 weight:any;
 products:any;
@@ -88,15 +75,73 @@ productObj2;
       //'status':this.status
     }
     
-    //filter the array with $key and extract name
+    this.prodbyID = this.prod2filter.filter(
+      prod => prod.$key === this.product33);
+    // subtract sales from inventory 
+
+    
+//filter the productsarray with $key and extract ?
+
+
+    if(this.selected12 == 70){
+      this.prodval = this.prodbyID["0"].big70
+      this.tweight = product.quantity * this.selected12
+    this.newweight = this.prodval - this.tweight
+    
+    this.Obj70={
+      '$key': this.product33,
+      'weight': this.newweight,
+      'medium20':this.newweight,
+      'small10':this.newweight,
+      'big70':this.newweight
+    }
+
+
+      this.workorder.update70(this.Obj70)
+      console.log('prod n key', this.Obj70)
+    }
+    
+    if(this.selected12 == 20){
+      this.prodval = this.prodbyID["0"].medium20
+      this.tweight = product.quantity * this.selected12
+    this.newweight = this.prodval - this.tweight
+    
+    this.Obj70={
+      '$key': this.product33,
+      'weight': this.newweight,
+      'medium20':this.newweight,
+      'small10':this.newweight,
+      'big70':this.newweight
+    }
+      this.workorder.update20(this.Obj70)
+      console.log('prod n key', this.Obj70)
+    }
+
+    if(this.selected12 == 10){
+      this.prodval = this.prodbyID["0"].small10
+      this.tweight = product.quantity * this.selected12
+    this.newweight = this.prodval - this.tweight
+    
+    this.Obj70={
+      '$key': this.product33,
+      'weight': this.newweight,
+      'medium20':this.newweight,
+      'small10':this.newweight,
+      'big70':this.newweight
+    }
+      this.workorder.update10(this.Obj70)
+      console.log('prod n key', this.Obj70)
+    }
   
+    
       
+    console.log(this.prodval)
       //let cookieData = '{"key":"value"}'
 
-
+      console.log("this is prdt key",this.product33);
       console.log( this.custbyID["0"].name ) //ELLEGANT SOLUTION!!!
      
-      console.log(this.custname)
+      console.log('prodval',this.prodval)
 
 
 
@@ -149,6 +194,7 @@ this.workorder.insertSalesorder(this.productObj);
   }
   custbyID
   custarray = [];
+  prod2filter = [];
   ngOnInit() {
    //the 
   
@@ -181,6 +227,22 @@ this.workorder.insertSalesorder(this.productObj);
 
       })}  );
 
+// fetch products from product list via workorder service@@@@@
+      var x = this.workorder.getProducts();
+      x.snapshotChanges().subscribe(item => {
+        
+         this.dataSource.data = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.prod2filter.push(y as Products[])
+          //this.dataSource.data.push(y as Products[]);
+          
+         
+        });
+        this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      });
       
   }
   

@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
   private headers = new Headers({'content-type':'application/json'})
   constructor(private http:Http, private workorder: WorkorderService, private formulation:FormulationService ) { }
  
-    displayedColumns= ['name' ,'prodnum','weight','price','edit']
+    displayedColumns= ['name' ,'big70','medium20','small10','edit']
  
     dataSource = new MatTableDataSource<Products[]>();
   
@@ -51,18 +51,18 @@ export class ProductListComponent implements OnInit {
       setPageSizeOptions(setPageSizeOptionsInput: string) {
         this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
       }
-
+prod2filter = [];
       formulararray = [];
       subject = [];
  ngOnInit() {
 
-
+//Behavior subject into observable for products ###########
   this.workorder.castproduct.subscribe((val)=>{
 
    
-      this.subject.push(val[1].phone);
+      this.subject.push(val);
     
-    console.log("val is",val);
+    console.log("val is", this.subject[0]);
  
   });
 
@@ -70,11 +70,14 @@ export class ProductListComponent implements OnInit {
 
    var x = this.workorder.getProducts();
    x.snapshotChanges().subscribe(item => {
-     this.dataSource.data = [];
+     
+      this.dataSource.data = [];
      item.forEach(element => {
        var y = element.payload.toJSON();
        y["$key"] = element.key;
+       this.prod2filter.push(y as Products[])
        this.dataSource.data.push(y as Products[]);
+       console.log(this.prod2filter);
       
      });
      this.dataSource.paginator = this.paginator;
@@ -113,11 +116,13 @@ x.snapshotChanges().subscribe(item => {
 
 
 
-
+productObjx={};
  //for input/edit/delete form
  onSubmit(employeeForm: NgForm) {
   console.log(this.formular1)
+  console.log("product key is=",employeeForm.value);
    if (employeeForm.value.$key == null)
+   
      this.workorder.insertProducts(employeeForm.value);
     
    else
@@ -137,6 +142,9 @@ x.snapshotChanges().subscribe(item => {
     weight: 0,
     price:0,
     formular:'',
+    big70:0,
+    medium20:0,
+    small10:0,
 
    }
  }
